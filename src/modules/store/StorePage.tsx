@@ -35,35 +35,31 @@ const items: StoreItem[] = [
 
 export function StorePage() {
   return (
-    <div className="space-y-4">
+    <div className="container">
       <header>
-        <h1 className="text-2xl font-bold text-emerald-400">
-          🧪 Sugerencias de compra
-        </h1>
-        <p className="text-sm text-slate-300">
+        <h1>🧪 Sugerencias de compra</h1>
+        <p className="muted">
           Productos que complementan tu sistema de cultivo.
         </p>
       </header>
 
-      <div className="space-y-2 text-sm">
-        {items.map((i) => (
-          <div
-            key={i.id}
-            className="bg-slate-900 rounded-xl p-3 border border-slate-800"
-          >
-            <p className="font-semibold">{i.name}</p>
-            <p className="text-[11px] text-emerald-300 mb-1">
-              {i.category.toUpperCase()}
-            </p>
-            <p className="text-xs text-slate-300 mb-2">{i.description}</p>
-            {i.link && (
+      <div className="store-list">
+        {items.map((item) => (
+          <div key={item.id} className="store-card">
+            <p className="store-title">{item.name}</p>
+
+            <p className="store-category">{item.category.toUpperCase()}</p>
+
+            <p className="store-description">{item.description}</p>
+
+            {item.link && (
               <a
-                href={i.link}
+                href={item.link}
                 target="_blank"
                 rel="noreferrer"
-                className="text-[11px] text-emerald-400 underline"
+                className="store-link"
               >
-                Ver producto
+                Ver producto →
               </a>
             )}
           </div>

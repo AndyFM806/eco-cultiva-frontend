@@ -8,11 +8,11 @@ import {
   simulateMetric,
 } from "../../../services/firebase/cameraService";
 
-
 export function CameraPage() {
   const [envs, setEnvs] = useState<Environment[]>([]);
   const [selectedEnv, setSelectedEnv] = useState<Environment | null>(null);
   const [metrics, setMetrics] = useState<EnvironmentMetric[]>([]);
+
   const [form, setForm] = useState({
     name: "",
     targetTempMin: 20,
@@ -37,6 +37,7 @@ export function CameraPage() {
   const handleCreateEnv = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name) return;
+
     await addEnvironment({
       name: form.name,
       targetTempMin: Number(form.targetTempMin),
@@ -46,6 +47,7 @@ export function CameraPage() {
       targetLightHours: Number(form.targetLightHours),
       autoModeEnabled: form.autoModeEnabled,
     });
+
     setForm({
       name: "",
       targetTempMin: 20,
@@ -68,34 +70,36 @@ export function CameraPage() {
     value < min || value > max;
 
   return (
-    <div className="space-y-4">
-      <header>
-        <h1 className="text-2xl font-bold text-emerald-400">
-          🌿 Cámara de Cultivo (Simulada)
-        </h1>
-        <p className="text-sm text-slate-300">
-          Define parámetros de tu cultivo indoor y simula lecturas de sensores.
+    <div className="container">
+
+      {/* HEADER */}
+      <header className="header-section">
+        <h1 className="title">🌿 Cámara de Cultivo (Simulada)</h1>
+        <p className="muted small">
+          Define parámetros de tu cultivo indoor y simula lecturas reales.
         </p>
       </header>
 
-      {/* Crear entorno */}
-      <section className="bg-slate-900 rounded-xl p-3 space-y-2 text-sm">
-        <h2 className="font-semibold text-emerald-300">
-          Nuevo entorno de cultivo
-        </h2>
-        <form onSubmit={handleCreateEnv} className="space-y-2">
+      {/* FORMULARIO ENTORNO */}
+      <section className="card">
+        <h2 className="section-title">Nuevo entorno de cultivo</h2>
+
+        <form onSubmit={handleCreateEnv} className="form">
           <input
-            className="w-full rounded-lg bg-slate-800 px-3 py-2"
-            placeholder="Nombre (ej: Indoor tomates)"
+            className="input"
+            placeholder="Nombre del entorno"
             value={form.name}
-            onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
+            onChange={(e) =>
+              setForm((f) => ({ ...f, name: e.target.value }))
+            }
           />
-          <div className="grid grid-cols-2 gap-2 text-xs">
-            <label className="flex flex-col gap-1">
+
+          <div className="grid-2">
+            <label className="label">
               Temp. min (°C)
               <input
                 type="number"
-                className="rounded-lg bg-slate-800 px-2 py-1"
+                className="input"
                 value={form.targetTempMin}
                 onChange={(e) =>
                   setForm((f) => ({
@@ -105,11 +109,12 @@ export function CameraPage() {
                 }
               />
             </label>
-            <label className="flex flex-col gap-1">
+
+            <label className="label">
               Temp. máx (°C)
               <input
                 type="number"
-                className="rounded-lg bg-slate-800 px-2 py-1"
+                className="input"
                 value={form.targetTempMax}
                 onChange={(e) =>
                   setForm((f) => ({
@@ -119,11 +124,12 @@ export function CameraPage() {
                 }
               />
             </label>
-            <label className="flex flex-col gap-1">
+
+            <label className="label">
               Humedad min (%)
               <input
                 type="number"
-                className="rounded-lg bg-slate-800 px-2 py-1"
+                className="input"
                 value={form.targetHumidityMin}
                 onChange={(e) =>
                   setForm((f) => ({
@@ -133,11 +139,12 @@ export function CameraPage() {
                 }
               />
             </label>
-            <label className="flex flex-col gap-1">
+
+            <label className="label">
               Humedad máx (%)
               <input
                 type="number"
-                className="rounded-lg bg-slate-800 px-2 py-1"
+                className="input"
                 value={form.targetHumidityMax}
                 onChange={(e) =>
                   setForm((f) => ({
@@ -148,11 +155,12 @@ export function CameraPage() {
               />
             </label>
           </div>
-          <label className="flex items-center gap-2 text-xs">
-            <span>Horas de luz/día</span>
+
+          <label className="label-inline">
+            Horas de luz/día
             <input
               type="number"
-              className="rounded-lg bg-slate-800 px-2 py-1 w-16"
+              className="input small-input"
               value={form.targetLightHours}
               onChange={(e) =>
                 setForm((f) => ({
@@ -162,7 +170,8 @@ export function CameraPage() {
               }
             />
           </label>
-          <label className="flex items-center gap-2 text-xs">
+
+          <label className="label-inline">
             <input
               type="checkbox"
               checked={form.autoModeEnabled}
@@ -173,71 +182,63 @@ export function CameraPage() {
                 }))
               }
             />
-            <span>Modo automático (simulado)</span>
+            Modo automático
           </label>
-          <button
-            className="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold rounded-lg py-2"
-            type="submit"
-          >
+
+          <button type="submit" className="btn-primary full">
             Guardar entorno
           </button>
         </form>
       </section>
 
-      {/* Lista de entornos */}
-      <section className="space-y-2">
-        <h2 className="text-sm font-semibold text-emerald-300">
-          Mis entornos
-        </h2>
-        <div className="space-y-2">
-          {envs.map((env) => (
-            <button
-              key={env.id}
-              onClick={() => setSelectedEnv(env)}
-              className={`w-full text-left bg-slate-900 rounded-xl p-3 text-sm border ${
-                selectedEnv?.id === env.id
-                  ? "border-emerald-400"
-                  : "border-slate-800"
-              }`}
-            >
-              <p className="font-semibold">{env.name}</p>
-              <p className="text-xs text-slate-400">
-                Temp óptima: {env.targetTempMin}–{env.targetTempMax}°C • Humedad{" "}
-                {env.targetHumidityMin}–{env.targetHumidityMax}%
-              </p>
-            </button>
-          ))}
-          {envs.length === 0 && (
-            <p className="text-xs text-slate-400">
-              Crea un entorno para empezar a simular tu cámara de cultivo.
+      {/* LISTA DE ENTORNOS */}
+      <section className="section-list">
+        <h2 className="section-title">Mis entornos</h2>
+
+        {envs.length === 0 && (
+          <p className="muted small">
+            Crea un entorno para empezar a simular tu cámara.
+          </p>
+        )}
+
+        {envs.map((env) => (
+          <button
+            key={env.id}
+            className={`card selectable ${
+              selectedEnv?.id === env.id ? "active" : ""
+            }`}
+            onClick={() => setSelectedEnv(env)}
+          >
+            <p className="item-title">{env.name}</p>
+            <p className="muted small">
+              Temp óptima: {env.targetTempMin}–{env.targetTempMax}°C •
+              Humedad {env.targetHumidityMin}–{env.targetHumidityMax}%
             </p>
-          )}
-        </div>
+          </button>
+        ))}
       </section>
 
-      {/* Métricas en tiempo (simulado) */}
+      {/* METRICAS */}
       {selectedEnv && (
-        <section className="bg-slate-900 rounded-xl p-3 space-y-2 text-sm">
-          <div className="flex justify-between items-center">
-            <h3 className="font-semibold text-emerald-300">
-              Sensores (simulados) – {selectedEnv.name}
+        <section className="card">
+          <div className="row-between">
+            <h3 className="section-title">
+              Sensores (simulados) — {selectedEnv.name}
             </h3>
-            <button
-              onClick={handleSimulate}
-              className="text-xs bg-emerald-500 text-slate-950 px-2 py-1 rounded-lg"
-            >
+
+            <button className="btn-secondary small" onClick={handleSimulate}>
               Simular lectura
             </button>
           </div>
 
           {!lastMetric && (
-            <p className="text-xs text-slate-400">
+            <p className="muted small">
               Aún no hay lecturas. Pulsa “Simular lectura”.
             </p>
           )}
 
           {lastMetric && (
-            <div className="grid grid-cols-2 gap-2 text-xs">
+            <div className="grid-2">
               <MetricCard
                 label="Temperatura"
                 value={`${lastMetric.temperature.toFixed(1)} °C`}
@@ -247,6 +248,7 @@ export function CameraPage() {
                   selectedEnv.targetTempMax
                 )}
               />
+
               <MetricCard
                 label="Humedad aire"
                 value={`${lastMetric.airHumidity.toFixed(0)} %`}
@@ -256,11 +258,13 @@ export function CameraPage() {
                   selectedEnv.targetHumidityMax
                 )}
               />
+
               <MetricCard
                 label="Humedad sustrato"
                 value={`${lastMetric.soilMoisture.toFixed(0)} %`}
                 alert={false}
               />
+
               <MetricCard
                 label="Luz"
                 value={`${lastMetric.lightLevel.toFixed(0)} %`}
@@ -269,9 +273,8 @@ export function CameraPage() {
             </div>
           )}
 
-          <p className="text-[11px] text-slate-400">
-            *En una versión con hardware real, estos valores vendrían de
-            sensores físicos y podrían activar riego / ventilación.
+          <p className="muted tiny">
+            *En una versión real, estos valores provendrían de sensores físicos.
           </p>
         </section>
       )}
@@ -279,6 +282,7 @@ export function CameraPage() {
   );
 }
 
+/* METRIC CARD PURE CSS VERSION */
 function MetricCard({
   label,
   value,
@@ -289,18 +293,10 @@ function MetricCard({
   alert: boolean;
 }) {
   return (
-    <div
-      className={`rounded-lg px-3 py-2 border ${
-        alert ? "border-red-500 bg-red-500/10" : "border-slate-800 bg-slate-800"
-      }`}
-    >
-      <p className="text-[11px] text-slate-300">{label}</p>
-      <p className="text-sm font-semibold">{value}</p>
-      {alert && (
-        <p className="text-[10px] text-red-300 mt-1">
-          Fuera de rango óptimo ⚠️
-        </p>
-      )}
+    <div className={`metric-card ${alert ? "alert" : ""}`}>
+      <p className="metric-label">{label}</p>
+      <p className="metric-value">{value}</p>
+      {alert && <p className="metric-alert">Fuera de rango ⚠️</p>}
     </div>
   );
 }

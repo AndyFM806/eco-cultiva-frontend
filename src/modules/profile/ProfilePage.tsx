@@ -14,7 +14,6 @@ export function ProfilePage() {
     preferredClimates: "",
   });
 
-  // Cargar perfil al entrar
   useEffect(() => {
     async function load() {
       const data = await getUserProfile();
@@ -30,7 +29,6 @@ export function ProfilePage() {
     load();
   }, []);
 
-  // Guardar perfil
   const handleSave = async () => {
     if (!form.displayName) {
       alert("Debes ingresar un nombre.");
@@ -51,25 +49,27 @@ export function ProfilePage() {
   };
 
   return (
-    <div className="space-y-4">
-      <h1 className="text-xl font-bold text-emerald-400">⚙ Perfil del usuario</h1>
+    <div className="container">
+      <h1>⚙ Perfil del usuario</h1>
+      <p className="muted">Actualiza tus preferencias y datos personales.</p>
 
-      <div className="bg-slate-900 p-4 rounded-xl space-y-3 text-sm">
-        <label className="flex flex-col gap-1">
-          Nombre:
+      <div className="card">
+
+        <div className="field">
+          <span className="label">Nombre:</span>
           <input
-            className="bg-slate-800 rounded-lg px-3 py-2"
+            className=""
             value={form.displayName}
             onChange={(e) =>
               setForm((f) => ({ ...f, displayName: e.target.value }))
             }
           />
-        </label>
+        </div>
 
-        <label className="flex flex-col gap-1">
-          Nivel de experiencia:
+        <div className="field">
+          <span className="label">Nivel de experiencia:</span>
           <select
-            className="bg-slate-800 rounded-lg px-3 py-2"
+            className=""
             value={form.experienceLevel}
             onChange={(e) =>
               setForm((f) => ({ ...f, experienceLevel: e.target.value }))
@@ -79,25 +79,23 @@ export function ProfilePage() {
             <option value="intermedio">Intermedio</option>
             <option value="avanzado">Avanzado</option>
           </select>
-        </label>
+        </div>
 
-        <label className="flex flex-col gap-1">
-          Climas preferidos (separados por coma):
+        <div className="field">
+          <span className="label">Climas preferidos (separados por coma):</span>
           <input
-            className="bg-slate-800 rounded-lg px-3 py-2"
+            className=""
             value={form.preferredClimates}
             onChange={(e) =>
               setForm((f) => ({ ...f, preferredClimates: e.target.value }))
             }
           />
-        </label>
+        </div>
 
-        <button
-          onClick={handleSave}
-          className="w-full py-2 bg-emerald-500 text-slate-900 rounded-lg font-semibold"
-        >
+        <button onClick={handleSave} className="btn">
           Guardar cambios
         </button>
+
       </div>
     </div>
   );

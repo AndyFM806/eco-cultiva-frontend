@@ -1,6 +1,5 @@
 import React from "react";
 
-
 interface Video {
   id: string;
   title: string;
@@ -46,22 +45,20 @@ export function ContentPage() {
   const [filter, setFilter] = React.useState<Video["category"] | "all">("all");
 
   const filtered =
-    filter === "all"
-      ? videos
-      : videos.filter((v) => v.category === filter);
+    filter === "all" ? videos : videos.filter((v) => v.category === filter);
 
   return (
-    <div className="space-y-4">
-      <header>
-        <h1 className="text-2xl font-bold text-emerald-400">
-          🎥 Contenido recomendado
-        </h1>
-        <p className="text-sm text-slate-300">
+    <div className="container">
+      {/* HEADER */}
+      <header className="header-section">
+        <h1 className="title">🎥 Contenido recomendado</h1>
+        <p className="muted small">
           Aprende con videos prácticos según tu interés.
         </p>
       </header>
 
-      <div className="flex gap-2 overflow-x-auto text-xs">
+      {/* BOTONES DE FILTRO */}
+      <div className="tags-row">
         {[
           { id: "all", label: "Todos" },
           { id: "primeros-pasos", label: "Primeros pasos" },
@@ -73,34 +70,22 @@ export function ContentPage() {
           <button
             key={b.id}
             onClick={() => setFilter(b.id as any)}
-            className={`px-3 py-1 rounded-full border ${
-              filter === b.id
-                ? "bg-emerald-500 text-slate-950 border-emerald-400"
-                : "bg-slate-900 text-slate-300 border-slate-700"
-            }`}
+            className={`btn-tag ${filter === b.id ? "active" : ""}`}
           >
             {b.label}
           </button>
         ))}
       </div>
 
-      <div className="space-y-2 text-sm">
+      {/* LISTA DE VIDEOS */}
+      <div className="list">
         {filtered.map((v) => (
-          <a
-            key={v.id}
-            href={v.url}
-            target="_blank"
-            rel="noreferrer"
-            className="block bg-slate-900 rounded-xl p-3 hover:border-emerald-400 border border-slate-800"
-          >
-            <p className="font-semibold">{v.title}</p>
-            <p className="text-[11px] text-slate-400">
-              Categoría: {v.category}
-            </p>
+          <a key={v.id} href={v.url} target="_blank" className="list-card">
+            <p className="list-title">{v.title}</p>
+            <p className="muted tiny">Categoría: {v.category}</p>
           </a>
         ))}
       </div>
     </div>
   );
-  
 }

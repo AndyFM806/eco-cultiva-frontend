@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 /* RESET GENERAL */
 * {
   margin: 0;
@@ -7,23 +9,23 @@
 
 /* PALETA ECOCULTIVA */
 :root {
-  --green: #34d399;
-  --green-dark: #059669;
-  --green-light: #d1fae5;
+  --green: #4CAF50; /* Un verde más profesional y amigable */
+  --green-dark: #388E3C;
+  --green-light: #C8E6C9;
 
-  --emerald: #34d399;
-  --emerald-light: #6ee7b7;
+  --emerald: #4CAF50;
+  --emerald-light: #81C784;
 
-  --bg: #0f0f0f;
-  --bg-card: #1a1a1a;
-  --bg-dark: #111;
+  --bg: #F5F5F5; /* Un fondo más claro y limpio */
+  --bg-card: #FFFFFF;
+  --bg-dark: #E0E0E0;
 
-  --text: #f3f4f6;
-  --text-muted: #9ca3af;
+  --text: #212121; /* Texto más oscuro para mejor contraste */
+  --text-muted: #757575;
 
-  --radius: 12px;
-  --radius-lg: 16px;
-  --border: #222;
+  --radius: 8px; /* Bordes redondeados más sutiles */
+  --radius-lg: 12px;
+  --border: #E0E0E0;
 }
 
 /* GENERAL */
@@ -32,7 +34,7 @@ body {
   color: var(--text);
   font-family: 'Inter', sans-serif;
   padding: 24px;
-  line-height: 1.5;
+  line-height: 1.6; /* Mayor interlineado para legibilidad */
 }
 
 /* CONTENEDOR GENERAL */
@@ -45,16 +47,16 @@ body {
    TITULOS GENERALES
 ---------------------------*/
 h1 {
-  font-size: 28px;
+  font-size: 32px; /* Ligeramente más grande para jerarquía */
   font-weight: 700;
-  margin-bottom: 8px;
-  color: var(--green);
+  margin-bottom: 12px;
+  color: var(--green-dark);
 }
 
 h2 {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   color: var(--emerald-light);
 }
 
@@ -69,28 +71,30 @@ h2 {
 .card {
   background: var(--bg-card);
   border: 1px solid var(--border);
-  padding: 20px;
-  border-radius: var(--radius);
-  margin-top: 20px;
+  padding: 24px;
+  border-radius: var(--radius-lg);
+  margin-top: 24px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  transition: 0.2s ease;
+  gap: 20px;
+  transition: 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Sombra sutil */
 }
 
 .card:hover {
-  border-color: #333;
+  border-color: #BDBDBD;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* FORM FIELD */
 .field {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .label {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--text-muted);
 }
@@ -103,22 +107,31 @@ select,
 textarea {
   width: 100%;
   background: var(--bg-dark);
-  border: 1px solid #333;
-  padding: 10px;
+  border: 1px solid #BDBDBD;
+  padding: 12px;
   color: var(--text);
   border-radius: var(--radius);
   font-size: 14px;
+  transition: 0.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--green);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
 }
 
 textarea {
-  min-height: 80px;
+  min-height: 100px;
   resize: vertical;
 }
 
 /* Small input */
 .small-input {
-  width: 80px;
-  padding: 8px;
+  width: 90px;
+  padding: 10px;
 }
 
 /* --------------------------
@@ -126,14 +139,15 @@ textarea {
 ---------------------------*/
 .btn {
   background: var(--green);
-  padding: 12px;
-  color: #000;
+  padding: 14px;
+  color: #FFFFFF;
   border-radius: var(--radius);
   cursor: pointer;
   font-weight: 600;
   text-align: center;
-  transition: 0.25s ease;
+  transition: 0.3s ease;
   border: none;
+  text-transform: uppercase; /* Para un look más profesional */
 }
 
 .btn:hover {
@@ -156,7 +170,7 @@ textarea {
 
 .three-grid {
   display: grid;
-  gap: 12px;
+  gap: 16px;
 }
 
 @media (min-width: 600px) {
@@ -171,20 +185,21 @@ textarea {
 .list-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 16px;
+  border-radius: var(--radius-lg);
+  padding: 20px;
   display: block;
   cursor: pointer;
-  transition: 0.25s ease;
+  transition: 0.3s ease;
 }
 
 .list-card:hover {
   border-color: var(--emerald-light);
+  transform: translateY(-2px); /* Efecto hover sutil */
 }
 
 .list-card.active {
   border-color: var(--emerald);
-  background: rgba(52, 211, 153, 0.05);
+  background: var(--green-light);
 }
 
 .list-content {
@@ -195,15 +210,15 @@ textarea {
 
 .list-title {
   font-weight: 600;
-  color: var(--emerald-light);
+  color: var(--green-dark);
 }
 
 .tag {
-  background: rgba(80, 200, 140, 0.12);
-  color: var(--emerald-light);
-  padding: 4px 10px;
-  font-size: 11px;
-  border-radius: 10px;
+  background: var(--green-light);
+  color: var(--green-dark);
+  padding: 6px 12px;
+  font-size: 12px;
+  border-radius: 12px;
   font-weight: 500;
 }
 
@@ -222,41 +237,43 @@ textarea {
    COMMUNITY FEED
 ---------------------------*/
 .feed {
-  margin-top: 16px;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
 .post-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 16px;
+  padding: 20px;
+  transition: 0.3s ease;
 }
 
 .post-card:hover {
   border-color: var(--emerald-light);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
 .post-content {
-  font-size: 14px;
+  font-size: 15px;
   color: var(--text);
 }
 
 .post-image {
   width: 100%;
-  max-height: 220px;
+  max-height: 250px;
   object-fit: cover;
   border-radius: var(--radius);
-  margin-top: 10px;
-  border: 1px solid #333;
+  margin-top: 12px;
+  border: 1px solid #E0E0E0;
 }
 
 .post-meta {
-  margin-top: 8px;
-  font-size: 11px;
-  color: #777;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #BDBDBD;
 }
 
 /* --------------------------
@@ -264,43 +281,43 @@ textarea {
 ---------------------------*/
 .selectable {
   cursor: pointer;
-  transition: 0.2s ease;
+  transition: 0.3s ease;
 }
 
 .selectable.active {
-  border: 1px solid var(--emerald);
-  background: rgba(50, 200, 150, 0.08);
+  border: 2px solid var(--emerald);
+  background: var(--green-light);
 }
 
 .metric-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
-  padding: 14px;
-  border-radius: var(--radius);
-  transition: 0.2s;
+  padding: 16px;
+  border-radius: var(--radius-lg);
+  transition: 0.3s;
 }
 
 .metric-card.alert {
-  border-color: #ff5555;
-  background: rgba(255, 80, 80, 0.12);
+  border-color: #EF5350;
+  background: #FFEBEE;
 }
 
 .metric-label {
-  font-size: 11px;
-  color: #bbb;
+  font-size: 12px;
+  color: #757575;
 }
 
 .metric-value {
-  margin-top: 4px;
-  font-size: 15px;
+  margin-top: 6px;
+  font-size: 16px;
   font-weight: 600;
-  color: white;
+  color: #212121;
 }
 
 .metric-alert {
-  color: #ff8888;
-  font-size: 10px;
-  margin-top: 4px;
+  color: #D32F2F;
+  font-size: 11px;
+  margin-top: 6px;
 }
 
 /* --------------------------
@@ -309,39 +326,39 @@ textarea {
 .space-y {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
 .chip-list {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   overflow-x: auto;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
 }
 
 .chip {
-  padding: 6px 14px;
-  border-radius: 18px;
-  font-size: 12px;
-  border: 1px solid #333;
-  background: #111;
-  color: #ddd;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  border: 1px solid #BDBDBD;
+  background: #FFFFFF;
+  color: #424242;
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.3s;
 }
 
 .chip:hover {
-  border-color: #444;
+  border-color: #9E9E9E;
 }
 
 .chip-active {
   background: var(--green);
-  color: #000;
+  color: #FFFFFF;
   border-color: var(--green);
 }
 
 .chart-container {
-  height: 260px;
+  height: 280px;
 }
 
 /* --------------------------
@@ -351,24 +368,25 @@ textarea {
   display: flex;
   flex-direction: column;
   height: 100%;
-  gap: 14px;
+  gap: 16px;
 }
 
 .assistant-title {
-  font-size: 24px;
-  color: var(--green);
+  font-size: 28px;
+  color: var(--green-dark);
   font-weight: bold;
 }
 
 .chat-area {
   flex: 1;
-  background: var(--bg-dark);
+  background: #FFFFFF;
   border-radius: var(--radius-lg);
-  padding: 14px;
+  padding: 16px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
+  border: 1px solid #E0E0E0;
 }
 
 .bubble-row {
@@ -384,33 +402,35 @@ textarea {
 }
 
 .bubble {
-  max-width: 75%;
-  padding: 10px 14px;
-  border-radius: 16px;
-  font-size: 13px;
-  line-height: 1.35;
-  animation: fadeIn 0.25s ease;
+  max-width: 80%;
+  padding: 12px 16px;
+  border-radius: 18px;
+  font-size: 14px;
+  line-height: 1.4;
+  animation: fadeIn 0.3s ease;
 }
 
 .bubble-user {
   background: var(--green);
-  color: #000;
-  border-bottom-right-radius: 4px;
+  color: #FFFFFF;
+  border-bottom-right-radius: 6px;
 }
 
 .bubble-bot {
-  background: #1f2937;
-  color: #eee;
-  border-bottom-left-radius: 4px;
+  background: #F5F5F5;
+  color: #212121;
+  border-bottom-left-radius: 6px;
+  border: 1px solid #E0E0E0;
 }
 
 .chat-input-area {
   display: flex;
   gap: 12px;
-  background: #111;
+  background: #FFFFFF;
   padding: 12px;
   border-radius: var(--radius-lg);
   align-items: center;
+  border: 1px solid #E0E0E0;
 }
 
 .chat-input {
@@ -424,13 +444,13 @@ textarea {
 
 .chat-send {
   background: var(--green);
-  color: #000;
-  padding: 6px 14px;
-  border-radius: 8px;
+  color: #FFFFFF;
+  padding: 8px 16px;
+  border-radius: 10px;
   font-weight: 600;
-  font-size: 12px;
+  font-size: 13px;
   cursor: pointer;
-  transition: 0.25s ease;
+  transition: 0.3s ease;
 }
 
 .chat-send:hover {
@@ -441,7 +461,7 @@ textarea {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(4px);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;

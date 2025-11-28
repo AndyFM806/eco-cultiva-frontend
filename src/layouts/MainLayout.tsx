@@ -1,45 +1,27 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export function MainLayout({ children }: { children: React.ReactNode }) {
-  const location = useLocation();
-
   return (
-    <div className="min-h-screen flex flex-col bg-slate-950 text-slate-50">
-      <main className="flex-1 overflow-y-auto p-4 pb-20 max-w-md mx-auto w-full">
-        {children}
-      </main>
+    <div className="min-h-screen bg-neutral-100">
+      {/* NAV */}
+      <nav className="bg-white border-b shadow-sm">
+        <div className="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+          <h1 className="text-xl font-bold text-emerald-700 flex items-center gap-2">
+            🌿 EcoCultiva
+          </h1>
 
-      <nav className="fixed bottom-0 left-0 right-0 bg-slate-900 border-t border-slate-800">
-        <div className="max-w-md mx-auto flex justify-between px-4 py-2 text-xs">
-          <NavItem to="/" label="Cultivos" current={location.pathname === "/"} />
-          <NavItem to="/camera" label="Cámara" current={location.pathname === "/camera"} />
-          <NavItem to="/ai" label="IA" current={location.pathname === "/ai"} />
-          <NavItem to="/analytics" label="Analítica" current={location.pathname === "/analytics"} />
-          <NavItem to="/community" label="Comunidad" current={location.pathname === "/community"} />
-          <NavItem to="/profile" label="Perfil" current={location.pathname === "/profile"} />
+          <div className="flex gap-6 text-sm font-medium">
+            <Link to="/" className="hover:text-emerald-600">Cultivos</Link>
+            <Link to="/camera" className="hover:text-emerald-600">Cámara</Link>
+            <Link to="/ai" className="hover:text-emerald-600">Asistente IA</Link>
+            <Link to="/analytics" className="hover:text-emerald-600">Analítica</Link>
+            <Link to="/community" className="hover:text-emerald-600">Comunidad</Link>
+            <Link to="/profile" className="hover:text-emerald-600">Perfil</Link>
+          </div>
         </div>
       </nav>
-    </div>
-  );
-}
 
-function NavItem({
-  to,
-  label,
-  current,
-}: {
-  to: string;
-  label: string;
-  current: boolean;
-}) {
-  return (
-    <Link
-      to={to}
-      className={`flex-1 text-center ${
-        current ? "text-emerald-400 font-semibold" : "text-slate-400"
-      }`}
-    >
-      {label}
-    </Link>
+      <main className="container">{children}</main>
+    </div>
   );
 }

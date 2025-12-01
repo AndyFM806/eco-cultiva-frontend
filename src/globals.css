@@ -30,12 +30,14 @@
 
 /* GENERAL */
 body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Inter', sans-serif;
-  padding: 24px;
-  line-height: 1.6; /* Mayor interlineado para legibilidad */
+  all: unset;
+  display: block;
+  background: var(--bg) !important;
+  color: var(--text) !important;
+  font-family: 'Inter', sans-serif !important;
+  padding: 20px !important;
 }
+
 
 /* CONTENEDOR GENERAL */
 .container {

@@ -39,13 +39,14 @@ export interface PlantLog {
 }
 
 export function listenPlants(callback: (plants: Plant[]) => void) {
-  const userId = getCurrentUserId();
+  const userId = "demo-user";
   const q = query(
     plantsCol,
     where("userId", "==", userId),
     orderBy("createdAt", "asc")
   );
   return onSnapshot(q, (snap) => {
+      console.log("SNAPSHOT SIZE:", snap.size);  // 👈 IMPORTANTE
     const data: Plant[] = snap.docs.map((d) => ({
       id: d.id,
       ...(d.data() as any),

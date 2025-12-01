@@ -1,46 +1,99 @@
-
 .main-layout {
-  min-height: 100vh;
-  background-color: var(--bg);
+  padding-bottom: 80px; /* Espacio para la barra de navegación móvil */
 }
 
+/* --- BARRA DE NAVEGACIÓN SUPERIOR (ESCRITORIO) --- */
 .main-nav {
-  background-color: var(--bg-card);
-  border-bottom: 1px solid var(--border);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  display: none; /* Oculta por defecto */
 }
 
-.main-nav-content {
-  max-width: 900px;
-  margin: auto;
-  padding: 16px 24px;
+@media (min-width: 768px) {
+  .main-layout {
+    padding-bottom: 0;
+  }
+
+  .main-nav {
+    display: block; /* Visible en pantallas grandes */
+    background-color: var(--bg-card);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .main-nav-content {
+    max-width: 900px;
+    margin: auto;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--green-dark);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    transition: color 0.3s ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--green);
+  }
+}
+
+/* --- BARRA DE NAVEGACIÓN INFERIOR (MÓVIL) --- */
+.mobile-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+  height: 65px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
+  z-index: 1000;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
 }
 
-.logo {
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--green-dark);
+.mobile-nav-link {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 8px;
-}
-
-.nav-links {
-  display: flex;
-  gap: 24px;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.nav-links a {
-  text-decoration: none;
+  gap: 4px;
   color: var(--text-muted);
-  transition: color 0.3s ease;
+  text-decoration: none;
+  font-size: 11px;
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  transition: color 0.3s ease, background-color 0.3s ease;
 }
 
-.nav-links a:hover {
+.mobile-nav-link.active {
   color: var(--green);
+  background-color: var(--green-light);
+}
+
+.mobile-nav-link .icon {
+  font-size: 20px;
+}
+
+@media (min-width: 768px) {
+  .mobile-nav {
+    display: none; /* Oculta en pantallas grandes */
+  }
 }

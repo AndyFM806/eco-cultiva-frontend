@@ -15,53 +15,81 @@ export interface CommunityPost {
 }
 
 // Mock data for demonstration
-const mockPosts: CommunityPost[] = [
+const simulationPosts: CommunityPost[] = [
   {
     id: "post-1",
     userId: "user-1",
-    user: "Ana C.",
+    user: "Laura Gómez",
     userAvatar: "https://randomuser.me/api/portraits/women/68.jpg",
-    plantName: "Tomates de balcón",
+    plantName: "Tomates Cherry Solares",
     content:
-      "¡Mi primera cosecha de tomates cherry! 🍅 Después de 3 meses de cuidado, por fin están listos. El sabor es increíble, mucho mejor que los del supermercado.",
+      "¡Mi primera cosecha de tomates cherry! 🍅 Después de 3 meses de mucho sol y cuidado, por fin están listos. El sabor es increíblemente dulce, nada que ver con los del supermercado. Usé un fertilizante orgánico que preparé en casa.",
     photoUrl:
       "https://images.unsplash.com/photo-1598512752271-33f913a53283?q=80&w=1200&auto=format&fit=crop",
-    likes: 18,
-    comments: 5,
-    createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(), // 2 days ago
+    likes: 42,
+    comments: 12,
+    createdAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(), // 1 day ago
   },
   {
     id: "post-2",
     userId: "user-2",
-    user: "Carlos G.",
+    user: "Javier Pérez",
     userAvatar: "https://randomuser.me/api/portraits/men/45.jpg",
-    plantName: "Huerto de aromáticas",
+    plantName: "Albahaca Genovesa",
     content:
-      "Mi pequeño rincón de hierbas en la cocina. Tengo albahaca, menta, romero y perejil. Es genial tenerlas a mano para cocinar. ¡El olor es fantástico!",
+      "Mi rincón de hierbas aromáticas en la cocina va creciendo. La albahaca está súper frondosa. Perfecta para el pesto que voy a preparar esta noche. ¿Algún consejo para evitar que se espigue?",
     photoUrl:
       "https://images.unsplash.com/photo-1604774659158-a0a7f20a2e50?q=80&w=1200&auto=format&fit=crop",
-    likes: 25,
-    comments: 7,
-    createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(), // 5 days ago
+    likes: 35,
+    comments: 8,
+    createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(), // 3 days ago
   },
   {
     id: "post-3",
     userId: "user-3",
-    user: "Elena R.",
+    user: "Sofía Castro",
     userAvatar: "https://randomuser.me/api/portraits/women/33.jpg",
     plantName: "Pimientos de Padrón",
     content:
-      "¡Unos pican y otros no! 🌶️ Muy contento con mi planta de pimientos. Produjo un montón. Perfectos para una tarde de tapas.",
+      "¡La cosecha de pimientos ha sido un éxito! 🌶️ Unos pican y otros no, como manda la tradición. Los preparé fritos con un poco de sal gorda. ¡Una delicia! La planta ha sido muy productiva.",
     photoUrl:
       "https://images.unsplash.com/photo-1615485499961-9011272d1a3c?q=80&w=1200&auto=format&fit=crop",
-    likes: 12,
-    comments: 3,
-    createdAt: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(), // 10 days ago
+    likes: 28,
+    comments: 6,
+    createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(), // 7 days ago
+  },
+  {
+    id: "post-4",
+    userId: "user-4",
+    user: "Mateo Vargas",
+    userAvatar: "https://randomuser.me/api/portraits/men/88.jpg",
+    plantName: "Lechugas Romanas",
+    content:
+      "🥬 ¡Ensalada fresca directa del huerto! Estas lechugas han crecido súper rápido en mi sistema hidropónico. El sabor es crujiente y fresco. Cero pesticidas, 100% natural. ¿Alguien más cultiva con hidroponía?",
+    photoUrl:
+      "https://images.unsplash.com/photo-1556782242-a71c5905f31a?q=80&w=1200&auto=format&fit=crop",
+    likes: 55,
+    comments: 15,
+    createdAt: new Date(Date.now() - 12 * 24 * 60 * 60 * 1000).toISOString(), // 12 days ago
+  },
+    {
+    id: "post-5",
+    userId: "user-5",
+    user: "Isabella Reyes",
+    userAvatar: "https://randomuser.me/api/portraits/women/50.jpg",
+    plantName: "Fresas Silvestres",
+    content:
+      "🍓 ¡No puedo creer que estas fresas hayan crecido en mi balcón! Son pequeñas pero increíblemente sabrosas. Ha sido una grata sorpresa. Recolecté un pequeño bol para el postre de hoy.",
+    photoUrl:
+      "https://images.unsplash.com/photo-1587393855524-7ab3f94a4342?q=80&w=1200&auto=format&fit=crop",
+    likes: 72,
+    comments: 20,
+    createdAt: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000).toISOString(), // 15 days ago
   },
 ];
 
 export function CommunityPage() {
-  const [posts] = useState<CommunityPost[]>(mockPosts);
+  const [posts] = useState<CommunityPost[]>(simulationPosts);
 
   return (
     <div className="container">

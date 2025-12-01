@@ -1,0 +1,169 @@
+/* === Estilos Generales de la Página === */
+.crops-page-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.plants-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.plants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+}
+
+/* === Formularios (Añadir Planta y Añadir Registro) === */
+.form-card {
+    background-color: var(--bg-card);
+    padding: 24px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+}
+
+.form-card h2, .form-card h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: var(--text);
+}
+
+.form-toggle-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background-color: var(--bg-light);
+    border: 1px dashed var(--border);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: all 0.2s;
+}
+
+.form-toggle-button:hover {
+    background-color: var(--bg-card);
+    color: var(--green);
+    border-color: var(--green);
+}
+
+.plant-form, .log-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+/* === Tarjeta de Planta === */
+.plant-card-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.plant-card-item.selected {
+    border-color: var(--green);
+    box-shadow: 0 0 10px rgba(45, 212, 191, 0.2);
+}
+
+.plant-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.plant-card-title {
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--text);
+}
+
+.plant-card-body .plant-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+/* === Vista de Detalle y Registros === */
+.plant-detail-view {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.plant-detail-view h3 {
+    margin: 0;
+    font-size: 20px;
+    color: var(--text);
+}
+
+.logs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.log-item {
+    background-color: var(--bg-light);
+    padding: 16px;
+    border-radius: var(--radius);
+    border-left: 4px solid var(--green);
+}
+
+.log-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.log-item-header .date {
+    font-weight: 600;
+    color: var(--text);
+}
+
+.log-item-header span {
+    color: var(--text-muted);
+}
+
+.log-item p {
+    margin: 0;
+    font-size: 15px;
+    color: var(--text-muted);
+}
+
+.no-logs-message {
+    background-color: var(--bg-light);
+    text-align: center;
+    padding: 20px;
+    border-radius: var(--radius);
+    color: var(--text-muted);
+    font-style: italic;
+}

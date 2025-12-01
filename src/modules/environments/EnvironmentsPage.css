@@ -1,0 +1,103 @@
+/* src/modules/environments/EnvironmentsPage.css */
+
+.environments-page-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.section-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 20px;
+  border-radius: var(--radius-lg);
+}
+
+.section-card h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--green-dark);
+  margin-bottom: 16px;
+}
+
+/* Grid para los entornos */
+.environments-grid,
+.sensors-grid {
+  display: grid;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .environments-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+  .sensors-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+}
+
+/* Tarjeta de Entorno */
+.env-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  background: var(--bg-light);
+}
+
+.env-card-header {
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.env-card-body {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* Tarjeta de Sensor */
+.sensor-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  text-align: center;
+}
+
+.sensor-label {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.sensor-value {
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.sensor-value .unit {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.update-notice {
+    margin-top: 24px;
+    font-size: 13px;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+/* Iconos para sensores */
+.sensor-icon {
+    font-size: 22px;
+}
+.icon-temp { color: #f4a261; }
+.icon-humidity { color: #2a9d8f; }
+.icon-soil { color: #8a5a44; }
+.icon-light { color: #e9c46a; }
+

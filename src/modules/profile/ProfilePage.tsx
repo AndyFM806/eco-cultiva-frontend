@@ -4,6 +4,8 @@ import {
   saveUserProfile,
   type UserProfile,
 } from "../../../services/firebase/profileService";
+import { generateDemoData } from "../../../services/firebase/demoData";
+
 
 export function ProfilePage() {
   const [profile, setProfile] = useState<UserProfile | null>(null);
@@ -95,6 +97,14 @@ export function ProfilePage() {
         <button onClick={handleSave} className="btn">
           Guardar cambios
         </button>
+        <button
+  onClick={generateDemoData}
+  className="btn-primary full"
+  style={{ marginTop: "20px", background: "#6366f1" }}
+>
+  Cargar datos DEMO (solo yo)
+</button>
+
 
       </div>
     </div>

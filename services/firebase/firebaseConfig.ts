@@ -19,3 +19,4 @@ export function getCurrentUserId(): string {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
+

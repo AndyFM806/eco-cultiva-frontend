@@ -36,7 +36,7 @@ export interface EnvironmentMetric {
 
 export function listenEnvironments(callback: (envs: Environment[]) => void) {
   const userId = getCurrentUserId();
-  const q = query(envCol, where("userId", "==", userId), orderBy("createdAt"));
+  const q = query(envCol, where("userId", "==", userId));
   return onSnapshot(q, (snap) => {
     const data: Environment[] = snap.docs.map((d) => ({
       id: d.id,

@@ -1,10 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "../App";
-
-
-// Importar solo Tailwind v4
-import "tailwindcss";
+import "../globals.css";  // Tu CSS real
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
